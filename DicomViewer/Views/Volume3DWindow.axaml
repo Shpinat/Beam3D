@@ -1,0 +1,26 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DicomViewer.ViewModels"
+        xmlns:hx="clr-namespace:HelixToolkit.Avalonia.SharpDX;assembly=HelixToolkit.Avalonia.SharpDX"
+        x:Class="DicomViewer.Views.Volume3DWindow"
+        x:DataType="vm:Volume3DViewModel"
+        Title="3D Volume Rendering" Width="800" Height="600">
+    <Grid>
+        <TextBlock Text="{Binding Status}" HorizontalAlignment="Center" VerticalAlignment="Top" ZIndex="1" Foreground="White" Background="#80000000" Padding="10"/>
+
+        <hx:Viewport3DX BackgroundColor="Black" ShowCoordinateSystem="True">
+            <hx:Viewport3DX.Camera>
+                <hx:PerspectiveCamera />
+            </hx:Viewport3DX.Camera>
+
+            <hx:DirectionalLight3D Color="White" />
+            <hx:AmbientLight3D Color="#202020" />
+
+            <hx:MeshGeometryModel3D Geometry="{Binding VolumeModelGeometry}">
+                <hx:MeshGeometryModel3D.Material>
+                    <hx:PhongMaterial />
+                </hx:MeshGeometryModel3D.Material>
+            </hx:MeshGeometryModel3D>
+        </hx:Viewport3DX>
+    </Grid>
+</Window>

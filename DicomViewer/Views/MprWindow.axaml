@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DicomViewer.ViewModels"
+        x:Class="DicomViewer.Views.MprWindow"
+        x:DataType="vm:MprViewModel"
+        Title="MPR (Multi-Planar Reconstruction)" Width="1000" Height="800">
+
+    <Grid RowDefinitions="*,Auto" ColumnDefinitions="*,*,*">
+
+        <!-- Axial -->
+        <Grid Grid.Row="0" Grid.Column="0" RowDefinitions="*,Auto">
+            <TextBlock Text="Axial" HorizontalAlignment="Center"/>
+            <Border Grid.Row="0" Background="Black" Margin="5">
+                <Image Source="{Binding AxialImage}" Stretch="Uniform"/>
+            </Border>
+            <Slider Grid.Row="1" Minimum="0" Maximum="{Binding MaxAxialIndex}" Value="{Binding AxialIndex}"/>
+        </Grid>
+
+        <!-- Coronal -->
+        <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="*,Auto">
+            <TextBlock Text="Coronal" HorizontalAlignment="Center"/>
+            <Border Grid.Row="0" Background="Black" Margin="5">
+                <Image Source="{Binding CoronalImage}" Stretch="Uniform"/>
+            </Border>
+            <Slider Grid.Row="1" Minimum="0" Maximum="{Binding MaxCoronalIndex}" Value="{Binding CoronalIndex}"/>
+        </Grid>
+
+        <!-- Sagittal -->
+        <Grid Grid.Row="0" Grid.Column="2" RowDefinitions="*,Auto">
+            <TextBlock Text="Sagittal" HorizontalAlignment="Center"/>
+            <Border Grid.Row="0" Background="Black" Margin="5">
+                <Image Source="{Binding SagittalImage}" Stretch="Uniform"/>
+            </Border>
+            <Slider Grid.Row="1" Minimum="0" Maximum="{Binding MaxSagittalIndex}" Value="{Binding SagittalIndex}"/>
+        </Grid>
+
+        <!-- Controls -->
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Margin="10">
+            <TextBlock Text="Window Width:" VerticalAlignment="Center"/>
+            <Slider Width="200" Minimum="1" Maximum="4000" Value="{Binding WindowWidth}"/>
+            <TextBlock Text="Window Center:" VerticalAlignment="Center"/>
+            <Slider Width="200" Minimum="-1000" Maximum="1000" Value="{Binding WindowCenter}"/>
+        </StackPanel>
+    </Grid>
+</Window>

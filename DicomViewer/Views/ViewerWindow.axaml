@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DicomViewer.ViewModels"
+        x:Class="DicomViewer.Views.ViewerWindow"
+        x:DataType="vm:ViewerViewModel"
+        Title="2D Viewer" Width="800" Height="600">
+
+    <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,250">
+        <!-- Toolbar -->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5">
+            <Button Content="MPR" Command="{Binding OpenMprCommand}" Margin="0,0,10,0"/>
+            <Button Content="3D Volume" Command="{Binding Open3DCommand}"/>
+        </StackPanel>
+
+        <!-- Image Area with Pan and Zoom -->
+        <Border Grid.Row="1" Grid.Column="0" Background="Black" ClipToBounds="True"
+                PointerPressed="OnPointerPressed" PointerMoved="OnPointerMoved" PointerReleased="OnPointerReleased" PointerWheelChanged="OnPointerWheelChanged">
+            <Image x:Name="MainImage" Source="{Binding DisplayImage}">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform  ScaleX="1" ScaleY="1"/>
+                        <TranslateTransform  X="0" Y="0"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Border>
+
+        <!-- Sidebar controls -->
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" Spacing="10">
+            <TextBlock Text="{Binding PatientInfo}" TextWrapping="Wrap"/>
+
+            <TextBlock Text="Window Width"/>
+            <Slider Minimum="1" Maximum="4000" Value="{Binding WindowWidth}"/>
+
+            <TextBlock Text="Window Center"/>
+            <Slider Minimum="-1000" Maximum="1000" Value="{Binding WindowCenter}"/>
+        </StackPanel>
+
+        <!-- Slice Slider -->
+        <Slider Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"
+                Minimum="0" Maximum="{Binding MaxSliceIndex}" Value="{Binding SliceIndex}"
+                TickPlacement="BottomRight"/>
+    </Grid>
+</Window>
