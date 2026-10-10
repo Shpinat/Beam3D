@@ -16,11 +16,11 @@ public partial class MprViewModel : ViewModelBase
     private VolumeData _volume;
 
     [ObservableProperty]
-    private WriteableBitmap _axialImage;
+    private WriteableBitmap? _axialImage;
     [ObservableProperty]
-    private WriteableBitmap _coronalImage;
+    private WriteableBitmap? _coronalImage;
     [ObservableProperty]
-    private WriteableBitmap _sagittalImage;
+    private WriteableBitmap? _sagittalImage;
 
     [ObservableProperty] private int _axialIndex;
     [ObservableProperty] private int _coronalIndex;

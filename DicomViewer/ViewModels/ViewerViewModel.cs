@@ -17,7 +17,7 @@ public partial class ViewerViewModel : ViewModelBase
     private List<DicomFile> _dicomFiles = new();
 
     [ObservableProperty]
-    private WriteableBitmap _displayImage;
+    private WriteableBitmap? _displayImage;
 
     [ObservableProperty]
     private int _sliceIndex;
@@ -32,7 +32,7 @@ public partial class ViewerViewModel : ViewModelBase
     private double _windowCenter = 40;
 
     [ObservableProperty]
-    private string _patientInfo;
+    private string? _patientInfo;
 
     public Action<DicomSeriesModel> OpenMprWindowAction;
     public Action<DicomSeriesModel> Open3DWindowAction;
